@@ -1,6 +1,19 @@
+import { InferGetServerSidePropsType } from 'next'
+import Image from 'next/image'
 import Head from 'next/head'
+import { getDogsPhotos } from '~/lib/Flickr'
+import { Photo } from '~/types'
 
-export default function Home() {
+export const getServerSideProps = async () => {
+  const photos = await getDogsPhotos()
+  return {
+    props: {
+      photos
+    },
+  }
+}
+
+export default function Home({ photos }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <>
       <Head>
@@ -11,9 +24,16 @@ export default function Home() {
       </Head>
       <main>
         <h1>Flickr&apos;s Photos Gallery</h1>
+        {photos?.map((photo: Photo, index: number) => (
+          <Image
+            key={index}
+            src={`https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`}
+            width={500}
+            height={500}
+            alt={photo.title}
+          />
+        ))}
       </main>
     </>
   )
 }
-
-// https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=06fe421ea76dcc08939e8e4202b4d933&text=dogs&format=json&nojsoncallback=1
