@@ -25,13 +25,14 @@ const PhotosList = ({ index }: Props) => {
           {photos?.map((photo: Photo) => (
             <>
               <h1>{photo.id}</h1>
-              <Image
-                key={photo.id}
-                src={`https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`}
-                width={200}
-                height={200}
-                alt={photo.title}
-              />
+              <Link key={photo.id} href={`/photos/${photo.id}`}>
+                <Image
+                  src={`https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`}
+                  width={200}
+                  height={200}
+                  alt={photo.title}
+                />
+              </Link>
             </>
           ))}
           <h1 className='bg-slate-500 font-bold'>END of list no {index}.</h1>

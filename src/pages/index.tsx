@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import { useState } from 'react'
+import Layout from '~/components/Layout'
 import PhotosList from '~/components/PhotosList'
 
 export default function Home() {
@@ -19,11 +20,11 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
+      <Layout home>
         <h1>Flickr&apos;s Photos Gallery</h1>
         {pages}
         <button className='border rounded-lg p-3 bg-slate-500 hover:bg-slate-400' onClick={() => setCnt(cnt + 1)}>Load More</button>
-      </main>
+      </Layout>
     </>
   )
 }
