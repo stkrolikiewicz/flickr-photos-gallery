@@ -1,19 +1,16 @@
-import { InferGetServerSidePropsType } from 'next'
-import Image from 'next/image'
 import Head from 'next/head'
-import { getDogsPhotos } from '~/lib/Flickr'
-import { Photo } from '~/types'
+import { useState } from 'react'
+import PhotosList from '~/components/PhotosList'
 
-export const getServerSideProps = async () => {
-  const photos = await getDogsPhotos()
-  return {
-    props: {
-      photos
-    },
+export default function Home() {
+  const [cnt, setCnt] = useState(1)
+
+  const pages = []
+
+  for (let i = 0; i < cnt; i++) {
+    pages.push(<PhotosList index={i + 1} key={i + 1} />)
   }
-}
 
-export default function Home({ photos }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <>
       <Head>
@@ -24,15 +21,8 @@ export default function Home({ photos }: InferGetServerSidePropsType<typeof getS
       </Head>
       <main>
         <h1>Flickr&apos;s Photos Gallery</h1>
-        {photos?.map((photo: Photo, index: number) => (
-          <Image
-            key={index}
-            src={`https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`}
-            width={500}
-            height={500}
-            alt={photo.title}
-          />
-        ))}
+        {pages}
+        <button className='border rounded-lg p-3 bg-slate-500 hover:bg-slate-400' onClick={() => setCnt(cnt + 1)}>Load More</button>
       </main>
     </>
   )
