@@ -1,5 +1,5 @@
 import React, { useState, createContext, PropsWithChildren } from "react"
-import PhotosList from "~/components/PhotosList"
+import PhotosList from "~/components/PhotosList/PhotosList"
 
 const initialPages: Array<JSX.Element> = [<PhotosList index={1} key={1} />]
 export const PhotosPagesContext = createContext(initialPages)

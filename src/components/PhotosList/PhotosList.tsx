@@ -24,7 +24,6 @@ const PhotosList = ({ index }: Props) => {
         : <div>
           {photos?.map((photo: Photo) => (
             <>
-              <h1>{photo.id}</h1>
               <Link key={photo.id} href={`/photos/${photo.id}`}>
                 <Image
                   src={`https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`}

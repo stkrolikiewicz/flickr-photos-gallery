@@ -1,7 +1,7 @@
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next"
 import { getPhotoInfoById, getAllPhotosIds } from "~/lib/Flickr"
 import Image from "next/image"
-import Layout from "~/components/Layout"
+import { Layout } from "~/components"
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = await getAllPhotosIds()
