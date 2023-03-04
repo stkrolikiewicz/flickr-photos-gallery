@@ -10,6 +10,8 @@ module.exports = {
       'stone': '#1c1917',
       'light': '#fafafa',
       'gray': '#313135',
+      'black': '#000',
+      'transparent': 'transparent'
     },
     extend: {
       fontFamily: {
@@ -17,5 +19,7 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('tailwind-scrollbar-hide')
+  ],
 };

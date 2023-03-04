@@ -17,10 +17,10 @@
     --main-h: calc(100vh - var(--header-h));
   }
   h1 {
-    @apply text-light text-4xl;
+    @apply text-4xl text-light;
   }
 
   html {
-    @apply bg-stone font-sans;
+    @apply overflow-x-auto bg-stone font-sans scrollbar-hide;
   }
 }

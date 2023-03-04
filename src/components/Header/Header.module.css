@@ -1,3 +1,3 @@
 .header {
-  @apply flex items-center border-b border-gray sticky top-0 backdrop-blur-xl h-[var(--header-h)];
+  @apply sticky top-0 z-50 flex h-[var(--header-h)] items-center border-b border-gray backdrop-blur-sm;
 }
