@@ -1,0 +1,32 @@
+.gridContainer {
+  @apply grid grid-cols-2 gap-2 pb-2 odd:translate-x-96 sm:grid-cols-3 lg:w-max lg:grid-cols-12 lg:gap-2;
+}
+.photosWrapper {
+  @apply relative w-screen overflow-x-hidden;
+}
+
+.row {
+  @apply flex gap-3 overflow-x-auto pb-3 scrollbar-hide;
+}
+
+.flexGrid {
+  @apply flex w-screen flex-wrap gap-2 pb-2;
+}
+.imageParent {
+  @apply relative min-h-[200px] min-w-[200px] flex-grow;
+}
+.image {
+  @apply object-cover shadow-sm shadow-black transition;
+}
+
+.slideButton {
+  @apply absolute z-10 h-[200px] w-fit p-2 text-transparent transition hover:text-black hover:backdrop-blur-md;
+}
+
+.slideRight {
+  @apply left-0;
+}
+
+.slideRight {
+  @apply right-0 left-auto;
+}

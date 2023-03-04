@@ -1,0 +1,15 @@
+.container {
+  @apply mx-auto bg-stone px-4 max-w-5xl;
+}
+
+.main {
+  @apply flex flex-col py-2 min-h-[var(--main-h)] justify-center gap-2;
+}
+
+.children {
+  @apply flex flex-col items-center;
+}
+
+.backHome {
+  @apply text-light font-normal w-fit transition hover:-translate-x-2 hover:text-opacity-50;
+}

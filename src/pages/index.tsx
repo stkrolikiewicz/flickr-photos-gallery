@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import { useState } from 'react'
-import Layout from '~/components/Layout'
-import PhotosList from '~/components/PhotosList'
+import { Layout, PhotosList } from '~/components'
 
 export default function Home() {
   const [cnt, setCnt] = useState(1)
@@ -21,7 +20,6 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout home>
-        <h1>Flickr&apos;s Photos Gallery</h1>
         {pages}
         <button className='border rounded-lg p-3 bg-slate-500 hover:bg-slate-400' onClick={() => setCnt(cnt + 1)}>Load More</button>
       </Layout>
