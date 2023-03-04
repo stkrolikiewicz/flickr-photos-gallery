@@ -6,9 +6,10 @@ import styles from "./PhotosRow.module.css"
 
 interface Props {
   photos: Photo[],
+  odd?: boolean
 }
 
-const PhotosRow = ({ photos }: Props) => {
+const PhotosRow = ({ photos, odd }: Props) => {
   const [scrollLeft, setScrollLeft] = useState<number>(0)
   const [maxLeft, setMaxLeft] = useState<number>(10588)
   const rowRef = useRef<HTMLDivElement>(null)
@@ -16,9 +17,13 @@ const PhotosRow = ({ photos }: Props) => {
   useEffect(() => {
     const handleResize = () => {
       rowRef.current && setMaxLeft(rowRef.current.scrollWidth - rowRef.current.clientWidth)
+      console.log("resize")
     }
     window.addEventListener('resize', handleResize)
-  })
+    odd && rowRef.current?.scrollTo({
+      left: 90,
+    })
+  }, [])
 
   const slideLeft = () => {
     rowRef.current?.scrollTo({
