@@ -9,7 +9,7 @@ module.exports = {
     colors: {
       'stone': '#1c1917',
       'light': '#fafafa',
-      'gray': '#313135',
+      'gray': '#525252',
       'black': '#000',
       'transparent': 'transparent'
     },

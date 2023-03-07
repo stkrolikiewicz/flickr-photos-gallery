@@ -24,3 +24,13 @@ export interface Photos {
   photo: Photo[]
   total: number
 }
+
+export interface PhotoInfo {
+  id: string,
+  server: string,
+  secret: string,
+  owner: string,
+  date: string,
+  title: string,
+  description?: string
+}

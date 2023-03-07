@@ -3,16 +3,20 @@ import Image from "next/image"
 import { useEffect, useState, UIEvent, useRef } from "react"
 import Link from "next/link"
 import styles from "./PhotosRow.module.css"
+import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/solid"
 
 interface Props {
   photos: Photo[],
-  odd?: boolean
+  odd?: boolean,
 }
 
 const PhotosRow = ({ photos, odd }: Props) => {
   const [scrollLeft, setScrollLeft] = useState<number>(0)
   const [maxLeft, setMaxLeft] = useState<number>(10588)
   const rowRef = useRef<HTMLDivElement>(null)
+  const imageWidth = 180
+  const rowGap = 16
+  const scrollOffset = 25 * (imageWidth + rowGap)
 
   useEffect(() => {
     const handleResize = () => {
@@ -20,8 +24,10 @@ const PhotosRow = ({ photos, odd }: Props) => {
       console.log("resize")
     }
     window.addEventListener('resize', handleResize)
-    odd && rowRef.current?.scrollTo({
-      left: 90,
+    odd ? rowRef.current?.scrollTo({
+      left: scrollOffset + imageWidth / 2,
+    }) : rowRef.current?.scrollTo({
+      left: scrollOffset,
     })
   }, [])
 
@@ -46,10 +52,10 @@ const PhotosRow = ({ photos, odd }: Props) => {
   return (
     <div className={styles.photosWrapper}>
       {scrollLeft < maxLeft && <button className={`${styles.slideButton} ${styles.slideRight}`} onClick={slideRight}>
-        Slide right →
+        <ArrowRightIcon className="h-[20px]" />
       </button>}
       {scrollLeft > 0 && <button className={`${styles.slideButton} ${styles.slideLeft}`} onClick={slideLeft}>
-        ← Slide left
+        <ArrowLeftIcon className="h-[20px]" />
       </button>}
       <div ref={rowRef} className={styles.row} onScroll={handleScroll}>
         {photos?.map((photo: Photo) => (
