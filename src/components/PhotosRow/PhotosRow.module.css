@@ -15,10 +15,10 @@
 }
 
 .slideButton {
-  @apply absolute z-10 h-[180px] w-[90px] p-2 text-transparent transition hover:text-black hover:backdrop-blur-md;
+  @apply absolute z-10 flex h-[180px] w-[90px] items-center justify-center p-2 text-transparent transition hover:text-black hover:backdrop-blur-md;
 }
 
-.slideRight {
+.slideLeft {
   @apply left-0;
 }
 
