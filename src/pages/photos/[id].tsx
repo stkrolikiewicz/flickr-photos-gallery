@@ -1,7 +1,7 @@
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next"
 import { getPhotoInfoById, getAllPhotosIds } from "~/lib/Flickr"
-import Image from "next/image"
 import { Layout } from "~/components"
+import ImageCard from "~/components/ImageCard/ImageCard"
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = await getAllPhotosIds()
@@ -23,12 +23,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 export default function Photo({ photo }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <Layout>
-      <Image
-        src={`https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`}
-        width={500}
-        height={500}
-        alt={photo.title}
-      />
+      {photo && <ImageCard photo={{ ...photo }} />}
     </Layout>
   )
 }
