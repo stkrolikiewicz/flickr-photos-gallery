@@ -4,6 +4,7 @@ import { useEffect, useState, UIEvent, useRef } from "react"
 import Link from "next/link"
 import styles from "./PhotosRow.module.css"
 import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/solid"
+import { blurDataURL } from "~/utils/blurDataURL"
 
 interface Props {
   photos: Photo[],
@@ -29,7 +30,7 @@ const PhotosRow = ({ photos, odd }: Props) => {
     }) : rowRef.current?.scrollTo({
       left: scrollOffset,
     })
-  }, [])
+  }, [odd, scrollOffset])
 
   const slideLeft = () => {
     rowRef.current?.scrollTo({
@@ -61,10 +62,13 @@ const PhotosRow = ({ photos, odd }: Props) => {
         {photos?.map((photo: Photo) => (
           <Link className={styles.imageParent} key={photo.id} href={`/photos/${photo.id}`}>
             <Image
-              className={styles.image}
+              placeholder='blur'
+              blurDataURL={blurDataURL}
+              className={`${styles.image} animate-pulse`}
               src={`https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`}
               fill
               alt={photo.title}
+              onLoadingComplete={(e) => console.log(e.classList.remove('animate-pulse'))}
             />
           </Link>
         ))}

@@ -17,9 +17,14 @@ module.exports = {
       fontFamily: {
         sans: ["Montserrat", "sans-serif"],
       },
+      boxShadow: {
+        'left':  `5px 0 5px -5px #1c1917`,
+        'right':  `-5px 0 5px -5px #1c1917`,
+      }
     },
   },
   plugins: [
-    require('tailwind-scrollbar-hide')
+    require('tailwind-scrollbar-hide'),
+    require("tailwindcss-animation-delay")
   ],
 };
