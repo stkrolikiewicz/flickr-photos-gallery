@@ -14,14 +14,17 @@
   @apply object-cover shadow-sm shadow-black transition;
 }
 
+.loading {
+  @apply animate-pulse;
+}
 .slideButton {
-  @apply absolute z-10 flex h-[180px] w-[90px] items-center justify-center p-2 text-transparent transition hover:text-black hover:backdrop-blur-md;
+  @apply absolute z-10 flex h-[180px] w-[90px] items-center justify-center p-2 text-transparent transition hover:bg-stone hover:bg-opacity-20 hover:text-black hover:backdrop-blur-md;
 }
 
 .slideLeft {
-  @apply left-0;
+  @apply left-0 hover:shadow-left;
 }
 
 .slideRight {
-  @apply right-0 left-auto;
+  @apply right-0 left-auto hover:shadow-right;
 }
