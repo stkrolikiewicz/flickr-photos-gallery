@@ -15,5 +15,5 @@
 }
 
 .description {
-  @apply text-center;
+  @apply text-justify backdrop-blur-md;
 }

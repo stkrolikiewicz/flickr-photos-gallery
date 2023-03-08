@@ -1,9 +1,9 @@
 .container {
-  @apply mx-auto bg-stone px-4 max-w-5xl;
+  @apply mx-auto max-w-5xl bg-stone px-4;
 }
 
 .main {
-  @apply flex flex-col py-2 min-h-[var(--main-h)] justify-center gap-2;
+  @apply flex min-h-[var(--main-h)] flex-col justify-center gap-2 py-2;
 }
 
 .children {
@@ -11,5 +11,9 @@
 }
 
 .backHome {
-  @apply text-light font-normal w-fit transition hover:-translate-x-2 hover:text-opacity-50;
+  @apply w-fit font-semibold text-gray transition;
+}
+
+.backHome:hover {
+  @apply -translate-x-2 text-opacity-50 underline-offset-4;
 }
