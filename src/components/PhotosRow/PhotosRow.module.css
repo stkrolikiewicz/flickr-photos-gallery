@@ -1,0 +1,30 @@
+.photosWrapper {
+  @apply relative w-screen overflow-x-hidden;
+}
+
+.row {
+  @apply flex gap-4 overflow-x-auto pb-4 scrollbar-hide;
+}
+
+.imageParent {
+  @apply relative min-h-[180px] min-w-[180px] flex-grow;
+}
+
+.image {
+  @apply object-cover shadow-sm shadow-black transition;
+}
+
+.loading {
+  @apply animate-pulse;
+}
+.slideButton {
+  @apply absolute z-10 flex h-[180px] w-[90px] items-center justify-center p-2 text-transparent transition hover:bg-stone hover:bg-opacity-20 hover:text-black hover:backdrop-blur-md;
+}
+
+.slideLeft {
+  @apply left-0 hover:shadow-left;
+}
+
+.slideRight {
+  @apply right-0 left-auto hover:shadow-right;
+}

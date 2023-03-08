@@ -1,0 +1,19 @@
+.container {
+  @apply z-50 flex flex-col  items-center bg-transparent;
+}
+.image {
+  @apply shadow-sm shadow-black;
+}
+.content {
+  @apply flex flex-col items-center gap-3 py-4;
+}
+.cardHeader {
+  @apply flex items-center gap-3 pb-3 text-gray;
+}
+.title {
+  @apply text-center font-thin italic text-light;
+}
+
+.description {
+  @apply text-justify backdrop-blur-md;
+}
