@@ -2,6 +2,8 @@ import { SetStateAction, useEffect } from "react"
 import usePhotos from "~/hooks/usePhotos"
 import Loader from "../Loader/Loader"
 import PhotosRow from "../PhotosRow/PhotosRow"
+import { useMediaQuery } from "react-responsive"
+import PhotosColumn from "../PhotosColumn/PhotosColumn"
 
 interface Props {
   index: number,
@@ -15,6 +17,8 @@ const PhotosList = ({ index, setIsLoading }: Props) => {
   const oddRow = photos?.slice(0, 50)
   const evenRow = photos?.slice(50, 100)
 
+  const isMobile = useMediaQuery({ query: '(max-width: 768px' })
+
   useEffect(() => {
     setIsLoading && setIsLoading(isLoading)
   }, [isLoading, setIsLoading])
@@ -22,10 +26,13 @@ const PhotosList = ({ index, setIsLoading }: Props) => {
   return (
     <>
       {
-        isLoading || isValidating ? <Loader /> : oddRow && evenRow && <>
-          <PhotosRow photos={oddRow} odd />
-          <PhotosRow photos={evenRow} />
-        </>
+        isLoading || isValidating ? <Loader />
+          : isMobile ? photos && <PhotosColumn photos={photos} />
+            : oddRow && evenRow &&
+            <>
+              <PhotosRow photos={oddRow} odd />
+              <PhotosRow photos={evenRow} />
+            </>
       }
       {error && <h2>Error: {error.message}</h2>}
     </>
