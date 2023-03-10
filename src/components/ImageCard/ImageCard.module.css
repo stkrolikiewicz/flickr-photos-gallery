@@ -2,16 +2,24 @@
   @apply z-50 flex flex-col  items-center bg-transparent;
 }
 .image {
-  @apply shadow-sm shadow-black;
+  @apply mx-2 shadow-sm shadow-black;
 }
 .content {
-  @apply flex flex-col items-center gap-3 py-4;
+  @apply flex flex-col items-center gap-3 object-cover py-4;
 }
 .cardHeader {
-  @apply flex items-center gap-3 pb-3 text-gray;
+  @apply flex flex-col items-center gap-3 pb-3 text-gray sm:flex-row;
+}
+
+.item {
+  @apply flex items-center gap-3 backdrop-blur-md;
+}
+
+.owner {
+  @apply sm:border-r;
 }
 .title {
-  @apply text-center font-thin italic text-light;
+  @apply text-center font-thin italic text-light backdrop-blur-md;
 }
 
 .description {
