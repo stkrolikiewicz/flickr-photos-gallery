@@ -22,7 +22,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
 export default function Photo({ photo }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
-    <Layout>
+    <Layout photoCard>
       {photo && <ImageCard photo={{ ...photo }} />}
     </Layout>
   )

@@ -5,6 +5,7 @@ import Link from "next/link"
 import styles from "./PhotosRow.module.css"
 import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/solid"
 import { blurDataURL } from "~/utils/blurDataURL"
+import { motion } from "framer-motion"
 
 interface Props {
   photos: Photo[],
@@ -51,7 +52,7 @@ const PhotosRow = ({ photos, odd }: Props) => {
   }
 
   return (
-    <div className={styles.photosWrapper}>
+    <motion.div className={styles.photosWrapper} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
       {scrollLeft < maxLeft && <button className={`${styles.slideButton} ${styles.slideRight}`} onClick={slideRight}>
         <ArrowRightIcon className="h-[20px]" />
       </button>}
@@ -62,6 +63,7 @@ const PhotosRow = ({ photos, odd }: Props) => {
         {photos?.map((photo: Photo) => (
           <Link className={styles.imageParent} key={photo.id} href={`/photos/${photo.id}`}>
             <Image
+              id={photo.id}
               placeholder='blur'
               blurDataURL={blurDataURL}
               className={`${styles.image} animate-pulse`}
@@ -73,7 +75,7 @@ const PhotosRow = ({ photos, odd }: Props) => {
           </Link>
         ))}
       </div>
-    </div>
+    </motion.div>
   )
 }
 

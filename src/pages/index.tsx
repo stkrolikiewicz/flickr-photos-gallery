@@ -2,17 +2,15 @@ import { ArrowDownIcon } from '@heroicons/react/24/solid'
 import Head from 'next/head'
 import { useState } from 'react'
 import { Layout, PhotosList } from '~/components'
+import { usePagesCountState } from '~/hooks/usePagesCountContext'
 
 export default function Home() {
-  const [cnt, setCnt] = useState(1)
+  const [cnt, setCnt] = usePagesCountState()
   const [isLoading, setIsLoading] = useState(true)
-
   const pages = []
-
   for (let i = 0; i < cnt; i++) {
     pages.push(<PhotosList index={i + 1} key={i + 1} setIsLoading={setIsLoading} />)
   }
-
   return (
     <>
       <Head>
