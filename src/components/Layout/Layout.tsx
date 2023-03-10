@@ -1,7 +1,17 @@
 import Link from "next/link"
 import styles from "./Layout.module.css"
 import Header from "../Header/Header"
-const Layout = ({ children, home }: { children: React.ReactNode, home?: boolean }) => {
+import { useRouter } from "next/router"
+
+interface Props {
+  children: React.ReactNode,
+  home?: boolean,
+  photoCard?: boolean
+}
+
+const Layout = ({ children, home, photoCard }: Props) => {
+  const router = useRouter()
+  const pid = router.query.id
   return (
     <div className={styles.container}>
       {home ? <Header home /> : <Header />}
@@ -11,7 +21,7 @@ const Layout = ({ children, home }: { children: React.ReactNode, home?: boolean 
         </div>
         {!home && (
           <div className={styles.backHome}>
-            <Link href="/">← back home</Link>
+            {photoCard ? <Link href={`/#${pid}`}>← back home</Link> : <Link href="/">← back home</Link>}
           </div>
         )}
       </main>

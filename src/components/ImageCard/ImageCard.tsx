@@ -3,6 +3,7 @@ import Image from "next/image"
 import styles from "./ImageCard.module.css"
 import { UserCircleIcon, CalendarIcon } from '@heroicons/react/24/solid'
 import { blurDataURL } from "~/utils/blurDataURL"
+import { motion } from "framer-motion"
 
 interface Props {
   photo: PhotoInfo
@@ -10,7 +11,7 @@ interface Props {
 
 const ImageCard = ({ photo }: Props) => {
   return (
-    <div className={styles.container}>
+    <motion.div className={styles.container} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
       <Image
         placeholder='blur'
         blurDataURL={blurDataURL}
@@ -24,14 +25,18 @@ const ImageCard = ({ photo }: Props) => {
       <div className={styles.content}>
         <h4 className={styles.title}>{photo.title}</h4>
         <div className={styles.cardHeader}>
-          <UserCircleIcon className="h-[18px]" />
-          <h4 className="pr-3 border-r font-bold">{photo.owner}</h4>
-          <CalendarIcon className="h-[18px]" />
-          <h4>{photo.date}</h4>
+          <div className={`${styles.owner} ${styles.item}`}>
+            <UserCircleIcon className="h-[18px]" />
+            <h4 className="pr-3 font-bold">{photo.owner}</h4>
+          </div>
+          <div className={`${styles.date} ${styles.item}`}>
+            <CalendarIcon className="h-[18px]" />
+            <h4>{photo.date}</h4>
+          </div>
         </div>
         {photo.description && <p className={styles.description}>{photo.description}</p>}
       </div>
-    </div>
+    </motion.div>
   )
 }
 

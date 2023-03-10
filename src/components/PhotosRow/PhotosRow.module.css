@@ -11,7 +11,7 @@
 }
 
 .image {
-  @apply object-cover shadow-sm shadow-black transition;
+  @apply object-cover shadow-sm shadow-black transition hover:opacity-70;
 }
 
 .loading {
