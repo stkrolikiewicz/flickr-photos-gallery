@@ -4,6 +4,10 @@
 
 A simple photos gallery built in Next.js based on Flickr's public API.
 
+Layout inspiration: [https://dribbble.com/shots/6803742-Online-gallery-preview](https://dribbble.com/shots/6803742-Online-gallery-preview)
+
+Deployment: [https://flickr-photos-gallery.vercel.app/](https://flickr-photos-gallery.vercel.app/)
+
 ## Technologies
 
 - Next.js v13.1.6
