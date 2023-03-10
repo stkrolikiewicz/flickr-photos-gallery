@@ -23,7 +23,6 @@ const PhotosRow = ({ photos, odd }: Props) => {
   useEffect(() => {
     const handleResize = () => {
       rowRef.current && setMaxLeft(rowRef.current.scrollWidth - rowRef.current.clientWidth)
-      console.log("resize")
     }
     window.addEventListener('resize', handleResize)
     odd ? rowRef.current?.scrollTo({
