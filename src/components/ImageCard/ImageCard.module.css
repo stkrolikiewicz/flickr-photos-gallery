@@ -5,7 +5,7 @@
   @apply mx-2 shadow-sm shadow-black;
 }
 .content {
-  @apply flex flex-col items-center gap-3 object-cover py-4;
+  @apply flex flex-col flex-wrap items-center gap-3 object-cover py-4;
 }
 .cardHeader {
   @apply flex flex-col items-center gap-3 pb-3 text-gray sm:flex-row;
@@ -23,5 +23,5 @@
 }
 
 .description {
-  @apply text-justify backdrop-blur-md;
+  @apply break-all text-justify backdrop-blur-md;
 }
