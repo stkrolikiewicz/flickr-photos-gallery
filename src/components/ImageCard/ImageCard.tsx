@@ -4,6 +4,7 @@ import styles from "./ImageCard.module.css"
 import { UserCircleIcon, CalendarIcon } from '@heroicons/react/24/solid'
 import { blurDataURL } from "~/utils/blurDataURL"
 import { motion } from "framer-motion"
+import { renderHTML } from "~/utils/renderHTML"
 
 interface Props {
   photo: PhotoInfo
@@ -34,7 +35,7 @@ const ImageCard = ({ photo }: Props) => {
             <h4>{photo.date}</h4>
           </div>
         </div>
-        {photo.description && <p className={styles.description}>{photo.description}</p>}
+        {photo.description && renderHTML(photo.description, styles.description)}
       </div>
     </motion.div>
   )
