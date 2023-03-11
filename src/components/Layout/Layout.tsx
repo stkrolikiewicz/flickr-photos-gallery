@@ -18,14 +18,6 @@ const Layout = ({ children, home, photoCard }: Props) => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
-      {/* <motion.div className={styles.container} initial={{ x: 300, opacity: 0 }}
-      animate={{ x: 0, opacity: 1 }}
-      exit={{ x: 100, opacity: 0 }}
-      transition={{
-        type: "spring",
-        stiffness: 100,
-        damping: 20,
-      }}> */}
       {home ? <Header home /> : <Header />}
       <main className={styles.main}>
         <div className={styles.children}>
