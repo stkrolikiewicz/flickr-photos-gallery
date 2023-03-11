@@ -1,12 +1,15 @@
 .container {
   @apply z-50 flex flex-col  items-center bg-transparent;
 }
+
 .image {
   @apply mx-2 shadow-sm shadow-black;
 }
+
 .content {
   @apply flex flex-col items-center gap-3 object-cover py-4;
 }
+
 .cardHeader {
   @apply flex flex-col items-center gap-3 pb-3 text-gray sm:flex-row;
 }
@@ -23,5 +26,5 @@
 }
 
 .description {
-  @apply text-justify backdrop-blur-md;
+  @apply break-all text-justify backdrop-blur-md;
 }
