@@ -17,7 +17,7 @@ const PhotosList = ({ index, setIsLoading }: Props) => {
   const oddRow = photos?.slice(0, 50)
   const evenRow = photos?.slice(50, 100)
 
-  const isMobile = useMediaQuery({ query: '(max-width: 768px' })
+  const isMobile = useMediaQuery({ query: 'screen, (max-width: 768px)' })
 
   useEffect(() => {
     setIsLoading && setIsLoading(isLoading)
