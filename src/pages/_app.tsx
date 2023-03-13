@@ -5,10 +5,8 @@ import { AnimatePresence } from 'framer-motion'
 import Router from "next/router"
 import { useEffect, useState } from 'react'
 import PageLoader from '~/components/PageLoader/PageLoader'
-import Loader from '~/components/Loader/Loader'
 
 export default function App({ Component, pageProps, router }: AppProps) {
-
   const [loading, setLoading] = useState(false)
   useEffect(() => {
     // Used for page transition
