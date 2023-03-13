@@ -5,10 +5,9 @@ import { AnimatePresence } from 'framer-motion'
 import Router from "next/router"
 import { useEffect, useState } from 'react'
 import PageLoader from '~/components/PageLoader/PageLoader'
-import Loader from '~/components/Loader/Loader'
+import { FirstLoadProvider } from '~/contexts/firstLoad'
 
 export default function App({ Component, pageProps, router }: AppProps) {
-
   const [loading, setLoading] = useState(false)
   useEffect(() => {
     // Used for page transition
@@ -28,9 +27,13 @@ export default function App({ Component, pageProps, router }: AppProps) {
     }
   }, [])
 
-  return <PagesCountProvider>
-    <AnimatePresence mode='wait' initial={false}>
-      {loading ? <PageLoader /> : <Component {...pageProps} key={router.asPath} />}
-    </AnimatePresence>
-  </PagesCountProvider>
+  return (
+    <FirstLoadProvider>
+      <PagesCountProvider>
+        <AnimatePresence mode='wait' initial={false}>
+          {loading ? <PageLoader /> : <Component {...pageProps} key={router.asPath} />}
+        </AnimatePresence>
+      </PagesCountProvider>
+    </FirstLoadProvider>
+  )
 }
