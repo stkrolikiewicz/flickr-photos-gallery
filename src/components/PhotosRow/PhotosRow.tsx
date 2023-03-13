@@ -6,6 +6,8 @@ import styles from "./PhotosRow.module.css"
 import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/solid"
 import { blurDataURL } from "~/utils/blurDataURL"
 import { motion } from "framer-motion"
+import { useFirstLoad } from "~/hooks/useFirstLoad"
+
 
 interface Props {
   photos: Photo[],
@@ -13,6 +15,7 @@ interface Props {
 }
 
 const PhotosRow = ({ photos, odd }: Props) => {
+  const [firstTime, setFirstTime] = useFirstLoad()
   const [scrollLeft, setScrollLeft] = useState<number>(0)
   const [maxLeft, setMaxLeft] = useState<number>(10588)
   const rowRef = useRef<HTMLDivElement>(null)
@@ -37,12 +40,14 @@ const PhotosRow = ({ photos, odd }: Props) => {
       left: Math.max(rowRef.current?.scrollLeft - rowRef.current?.clientWidth, 0),
       behavior: 'smooth'
     })
+    setFirstTime(false)
   }
   const slideRight = () => {
     rowRef.current?.scrollTo({
       left: Math.min(rowRef.current?.scrollLeft + rowRef.current?.clientWidth, rowRef.current?.scrollWidth),
       behavior: 'smooth'
     })
+    setFirstTime(false)
   }
 
   const handleScroll = (event: UIEvent) => {
@@ -51,7 +56,7 @@ const PhotosRow = ({ photos, odd }: Props) => {
   }
 
   return (
-    <motion.div className={styles.photosWrapper} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
+    <motion.div className={styles.photosWrapper} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} onAnimationComplete={firstTime ? (odd ? slideLeft : slideRight) : () => { 0 }}>
       {scrollLeft < maxLeft && <button className={`${styles.slideButton} ${styles.slideRight}`} onClick={slideRight}>
         <ArrowRightIcon className="h-[20px]" />
       </button>}
