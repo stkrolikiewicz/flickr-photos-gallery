@@ -16,7 +16,7 @@ const ImageCard = ({ photo }: Props) => {
       <Image
         placeholder='blur'
         blurDataURL={blurDataURL}
-        className="mx-2 shadow-sm shadow-black animate-pulse"
+        className="mx-2 shadow-sm shadow-black animate-pulse rounded-md"
         src={`https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`}
         width={500}
         height={500}
