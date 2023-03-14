@@ -1,5 +1,5 @@
 .button {
-  @apply flex h-[120px] flex-col items-center justify-center p-3 text-gray transition;
+  @apply flex h-[120px] flex-col items-center justify-center p-3 text-light transition;
 }
 
 .next {

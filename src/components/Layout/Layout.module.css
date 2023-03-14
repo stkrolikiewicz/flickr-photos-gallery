@@ -11,9 +11,9 @@
 }
 
 .backHome {
-  @apply w-fit font-semibold text-gray transition;
+  @apply h-14 cursor-pointer rounded-full border p-4 text-light transition;
 }
 
 .backHome:hover {
-  @apply -translate-x-2 text-opacity-50 underline-offset-4;
+  @apply -translate-x-2 bg-gray;
 }

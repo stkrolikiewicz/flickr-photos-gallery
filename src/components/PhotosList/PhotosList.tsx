@@ -54,16 +54,15 @@ const PhotosList = ({ index }: Props) => {
   }
   return (
     <>
-      {!loading && cnt > 1 && <button
+      {!loading && cnt > 1 && <motion.button initial={{ height: cnt == 2 && direction === "next" ? 0 : 120 }} animate={{ height: 120, transition: { delay: cnt == 2 && direction === "next" ? 0.5 : 0 }, opacity: 1 }}
         className={`${styles.button} ${styles.previous}`} onClick={() => {
           setDirection("previous")
           setCnt(cnt - 1)
         }}>
         <ArrowUpIcon className='h-6' />
-        <h4>Show previous</h4>
-      </button>}
+      </motion.button>}
       <motion.div initial={direction} animate={{ y: 0, opacity: 1 }} exit={`${direction}Exit`} variants={variants}>
-        {cnt == 1 && <div className="h-[120px] content-['']"></div>}
+        {cnt == 1 && <motion.div initial={{ height: 120 }} animate={{ height: 0 }} transition={{ delay: 0.5 }} />}
         {
           loading ? <Loader />
             : isMobile ? photos && <PhotosColumn photos={photos} />
@@ -75,15 +74,16 @@ const PhotosList = ({ index }: Props) => {
         }
         {error && <h2>Error: {error.message}</h2>}
       </motion.div>
-      {!loading && cnt < 600 && <button
-        className={`${styles.button} ${styles.next}`}
-        onClick={() => {
-          setDirection("next")
-          setCnt(cnt + 1)
-        }}>
-        <h4>Show next</h4>
-        <ArrowDownIcon className='h-6' />
-      </button>}
+      {
+        !loading && cnt < 600 && <button
+          className={`${styles.button} ${styles.next}`}
+          onClick={() => {
+            setDirection("next")
+            setCnt(cnt + 1)
+          }}>
+          <ArrowDownIcon className='h-6' />
+        </button>
+      }
     </>
   )
 }

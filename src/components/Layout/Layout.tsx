@@ -3,6 +3,7 @@ import styles from "./Layout.module.css"
 import Header from "../Header/Header"
 import { useRouter } from "next/router"
 import { motion } from "framer-motion"
+import { ArrowLeftIcon } from "@heroicons/react/24/solid"
 
 interface Props {
   children: React.ReactNode,
@@ -24,9 +25,9 @@ const Layout = ({ children, home, photoCard }: Props) => {
           {children}
         </div>
         {!home && (
-          <div className={styles.backHome}>
-            {photoCard ? <Link href={`/#${pid}`}>← back home</Link> : <Link href="/">← back home</Link>}
-          </div>
+          <>
+            {photoCard ? <Link href={`/#${pid}`}><ArrowLeftIcon className={styles.backHome} /></Link> : <Link href="/"><div className={styles.backHome}><ArrowLeftIcon className={styles.backHome} /></div></Link>}
+          </>
         )}
       </main>
     </motion.div>

@@ -3,7 +3,7 @@
 }
 
 .image {
-  @apply mx-2 shadow-sm shadow-black;
+  @apply mx-2 animate-pulse rounded-md shadow-sm shadow-black;
 }
 
 .content {
