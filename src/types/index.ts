@@ -34,3 +34,5 @@ export interface PhotoInfo {
   title: string,
   description?: string
 }
+
+export type Direction = "next" | "previous" | ""

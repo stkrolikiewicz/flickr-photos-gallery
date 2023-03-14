@@ -1,0 +1,11 @@
+.button {
+  @apply flex h-[120px] flex-col items-center justify-center p-3 text-gray transition;
+}
+
+.next {
+  @apply -translate-y-4 hover:-translate-y-1;
+}
+
+.previous {
+  @apply hover:-translate-y-3;
+}
