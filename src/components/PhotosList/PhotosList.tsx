@@ -26,43 +26,49 @@ const PhotosList = ({ index }: Props) => {
 
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
 
+  const h = 40
+  const pagesLimit = 600
+
   const variants = {
     "next": {
-      y: 100,
+      y: h,
       opacity: 0
     },
     "previous": {
-      y: -100,
+      y: -h,
       opacity: 0
     },
     "nextExit": {
-      y: -100,
+      y: -h,
       opacity: 0
     },
     "previousExit": {
-      y: 100,
+      y: h,
       opacity: 0
     },
-    "": {
-      y: 0,
-      opacity: 0
-    },
-    "Exit": {
-      y: -100,
-      opacity: 0
-    }
   }
   return (
     <>
-      {!loading && cnt > 1 && <motion.button initial={{ height: cnt == 2 && direction === "next" ? 0 : 120 }} animate={{ height: 120, transition: { delay: cnt == 2 && direction === "next" ? 0.5 : 0 }, opacity: 1 }}
-        className={`${styles.button} ${styles.previous}`} onClick={() => {
-          setDirection("previous")
-          setCnt(cnt - 1)
-        }}>
-        <ArrowUpIcon className='h-6' />
-      </motion.button>}
-      <motion.div initial={direction} animate={{ y: 0, opacity: 1 }} exit={`${direction}Exit`} variants={variants}>
-        {cnt == 1 && <motion.div initial={{ height: 120 }} animate={{ height: 0 }} transition={{ delay: 0.5 }} />}
+      {
+        !loading && <motion.button
+          initial={{ opacity: cnt == 1 ? 0 : 1, height: h }}
+          animate={{ opacity: cnt == 1 ? 0 : 1, height: cnt == 1 ? 0 : h }}
+          transition={{ delay: 0.5 }}
+          className={`${styles.button} ${styles.previous}`} onClick={() => {
+            setDirection("previous")
+            setCnt(cnt - 1)
+          }}>
+          <ArrowUpIcon className='h-6' />
+        </motion.button>
+      }
+      <motion.div
+        initial={direction}
+        animate={{ y: 0, opacity: 1 }}
+        exit={`${direction}Exit`}
+        transition={{ stiffness: 200 }}
+        variants={variants}
+        className={styles.container}
+      >
         {
           loading ? <Loader />
             : isMobile ? photos && <PhotosColumn photos={photos} />
@@ -75,14 +81,16 @@ const PhotosList = ({ index }: Props) => {
         {error && <h2>Error: {error.message}</h2>}
       </motion.div>
       {
-        !loading && cnt < 600 && <button
+        !loading && cnt < pagesLimit && <motion.button
+          initial={{ opacity: cnt == pagesLimit ? 0 : 1, height: h }}
+          animate={{ opacity: cnt == pagesLimit ? 0 : 1, height: cnt == pagesLimit ? 0 : h }}
           className={`${styles.button} ${styles.next}`}
           onClick={() => {
             setDirection("next")
             setCnt(cnt + 1)
           }}>
           <ArrowDownIcon className='h-6' />
-        </button>
+        </motion.button>
       }
     </>
   )

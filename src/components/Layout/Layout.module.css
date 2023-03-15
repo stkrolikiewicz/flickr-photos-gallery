@@ -11,9 +11,9 @@
 }
 
 .backHome {
-  @apply h-14 cursor-pointer rounded-full border p-4 text-light transition;
+  @apply h-14 cursor-pointer border border-transparent p-4 text-light transition;
 }
 
 .backHome:hover {
-  @apply -translate-x-2 bg-gray;
+  @apply border-l-gray;
 }
