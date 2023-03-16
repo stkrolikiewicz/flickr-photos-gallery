@@ -25,7 +25,7 @@ const PhotosColumn = ({ photos }: Props) => {
               width={500}
               height={500}
               alt={photo.title}
-              onLoadingComplete={(e) => console.log(e.classList.remove('animate-pulse'))}
+              onLoadingComplete={(e) => e.classList.remove('animate-pulse')}
             />
           </Link>
         </motion.div>

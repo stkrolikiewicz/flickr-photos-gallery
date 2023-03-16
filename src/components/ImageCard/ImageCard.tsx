@@ -21,7 +21,7 @@ const ImageCard = ({ photo }: Props) => {
         width={500}
         height={500}
         alt={photo.title}
-        onLoadingComplete={(e) => console.log(e.classList.remove('animate-pulse'))}
+        onLoadingComplete={(e) => e.classList.remove('animate-pulse')}
       />
       <div className="flex flex-col items-center gap-3 object-cover py-4">
         <h4 className="text-center font-thin italic text-light backdrop-blur-md">{photo.title}</h4>

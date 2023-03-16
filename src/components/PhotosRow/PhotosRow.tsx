@@ -74,7 +74,7 @@ const PhotosRow = ({ photos, odd }: Props) => {
               src={`https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`}
               fill
               alt={photo.title}
-              onLoadingComplete={(e) => console.log(e.classList.remove('animate-pulse'))}
+              onLoadingComplete={(e) => e.classList.remove('animate-pulse')}
             />
           </Link>
         ))}
