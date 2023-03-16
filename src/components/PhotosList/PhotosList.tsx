@@ -12,15 +12,28 @@ import styles from "./PhotosList.module.css"
 
 interface Props {
   index: number,
+  next?: boolean
 }
 
-const PhotosList = ({ index }: Props) => {
+const PhotosList = ({ index, next }: Props) => {
   const { data, isLoading, isValidating, error } = usePhotos(index)
   const photos = isLoading ? null : data?.photo
   const oddRow = photos?.slice(0, 50)
   const evenRow = photos?.slice(50, 100)
   const [cnt, setCnt] = usePagesCountState()
   const [direction, setDirection] = useState<Direction>("")
+  const [clicked, setClicked] = useState<boolean>(next || false)
+
+  const loadNext = () => {
+    setDirection("next")
+    setCnt(cnt + 1)
+    setClicked(true)
+  }
+
+  const loadPrevious = () => {
+    setDirection("previous")
+    setCnt(cnt - 1)
+  }
 
   const loading = isLoading || isValidating
 
@@ -47,17 +60,16 @@ const PhotosList = ({ index }: Props) => {
       opacity: 0
     },
   }
+
   return (
     <>
       {
-        !loading && <motion.button
+        !isMobile
+        && !loading && <motion.button
           initial={{ opacity: cnt == 1 ? 0 : 1, height: h }}
           animate={{ opacity: cnt == 1 ? 0 : 1, height: cnt == 1 ? 0 : h }}
           transition={{ delay: 0.5 }}
-          className={`${styles.button} ${styles.previous}`} onClick={() => {
-            setDirection("previous")
-            setCnt(cnt - 1)
-          }}>
+          className={`${styles.button} ${styles.previous}`} onClick={loadPrevious}>
           <ArrowUpIcon className='h-6' />
         </motion.button>
       }
@@ -81,14 +93,11 @@ const PhotosList = ({ index }: Props) => {
         {error && <h2>Error: {error.message}</h2>}
       </motion.div>
       {
-        !loading && cnt < pagesLimit && <motion.button
+        ((!isMobile && !loading && cnt < pagesLimit) || (isMobile && !loading && cnt < pagesLimit && !clicked)) && <motion.button
           initial={{ opacity: cnt == pagesLimit ? 0 : 1, height: h }}
           animate={{ opacity: cnt == pagesLimit ? 0 : 1, height: cnt == pagesLimit ? 0 : h }}
           className={`${styles.button} ${styles.next}`}
-          onClick={() => {
-            setDirection("next")
-            setCnt(cnt + 1)
-          }}>
+          onClick={loadNext}>
           <ArrowDownIcon className='h-6' />
         </motion.button>
       }

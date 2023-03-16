@@ -1,5 +1,5 @@
 .photosWrapper {
-  @apply mb-2 flex flex-col gap-4;
+  @apply mb-4 flex flex-col gap-4;
 }
 
 .image {
