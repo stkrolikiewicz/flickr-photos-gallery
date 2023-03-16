@@ -1,4 +1,4 @@
-import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next"
+import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType, NextPage } from "next"
 import { getPhotoInfoById, getAllPhotosIds } from "~/lib/Flickr"
 import { Layout } from "~/components"
 import ImageCard from "~/components/ImageCard/ImageCard"
@@ -20,10 +20,12 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   }
 }
 
-export default function Photo({ photo }: InferGetStaticPropsType<typeof getStaticProps>) {
+const Photo: NextPage = ({ photo }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <Layout photoCard>
       {photo && <ImageCard photo={{ ...photo }} />}
     </Layout>
   )
 }
+
+export default Photo

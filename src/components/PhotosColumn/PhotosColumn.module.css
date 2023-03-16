@@ -3,7 +3,7 @@
 }
 
 .image {
-  @apply rounded-md object-contain shadow-sm shadow-black transition hover:opacity-70;
+  @apply scroll-mt-[var(--scroll-offset)] rounded-md object-contain shadow-sm shadow-black transition hover:opacity-70;
 }
 
 .loading {
