@@ -15,7 +15,7 @@ const PhotosColumn = ({ photos }: Props) => {
     <div className={styles.photosWrapper}>
       {photos?.map((photo: Photo) => (
         <motion.div key={photo.id} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
-          <Link className={styles.imageParent} href={`/photos/${photo.id}`}>
+          <Link className={styles.imageParent} href={`/photos/${photo.id}`} scroll={false}>
             <Image
               id={photo.id}
               placeholder='blur'

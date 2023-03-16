@@ -68,7 +68,7 @@ const PhotosRow = ({ photos, odd }: Props) => {
       </button>}
       <div ref={rowRef} className={styles.row} onScroll={handleScroll}>
         {photos?.map((photo: Photo) => (
-          <Link className={styles.imageParent} key={photo.id} href={`/photos/${photo.id}`}>
+          <Link className={styles.imageParent} key={photo.id} href={`/photos/${photo.id}`} scroll={false}>
             <Image
               id={photo.id}
               placeholder='blur'
