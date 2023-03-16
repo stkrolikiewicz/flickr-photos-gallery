@@ -33,7 +33,10 @@ const PhotosRow = ({ photos, odd }: Props) => {
     }) : rowRef.current?.scrollTo({
       left: scrollOffset,
     })
-  }, [odd, scrollOffset])
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
 
   const slideLeft = () => {
     rowRef.current?.scrollTo({
