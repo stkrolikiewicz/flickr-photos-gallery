@@ -1,10 +1,10 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import usePhotos from "~/hooks/usePhotos"
 import Loader from "../Loader/Loader"
 import { useMediaQuery } from "react-responsive"
 import { Direction } from "~/types"
 import { usePagesCountState } from "~/hooks/usePagesCountContext"
-import styles from "./PhotosList.module.css"
+// import styles from "./PhotosList.module.css"
 import { MotionWrapper, NextButton, PreviousButton } from "~/components"
 import { Mobile, Desktop } from "~/views"
 

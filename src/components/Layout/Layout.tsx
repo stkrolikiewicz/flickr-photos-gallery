@@ -26,7 +26,7 @@ const Layout = ({ children, home, photoCard }: Props) => {
         </div>
         {!home && (
           <>
-            {photoCard ? <Link href={`/#${pid}`} scroll={false}><ArrowLeftIcon className={styles.backHome} /></Link> : <Link href="/" scroll={false}><div className={styles.backHome}><ArrowLeftIcon className={styles.backHome} /></div></Link>}
+            {photoCard ? <Link href={`/#${pid}`} scroll={false}><ArrowLeftIcon className={styles.backHome} /></Link> : <Link href="/" scroll={false}><ArrowLeftIcon className={styles.backHome} /></Link>}
           </>
         )}
       </main>
