@@ -2,6 +2,7 @@ import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType, NextPage } fro
 import { getPhotoInfoById, getAllPhotosIds } from "~/lib/Flickr"
 import { Layout } from "~/components"
 import ImageCard from "~/components/ImageCard/ImageCard"
+import Head from "next/head"
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = await getAllPhotosIds()
@@ -22,9 +23,17 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
 const Photo: NextPage = ({ photo }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
-    <Layout photoCard>
-      {photo && <ImageCard photo={{ ...photo }} />}
-    </Layout>
+    <>
+      <Head>
+        <title>{photo.title}</title>
+        <meta name="description" content={photo.description} />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <Layout photoCard>
+        {photo && <ImageCard photo={{ ...photo }} />}
+      </Layout>
+    </>
   )
 }
 

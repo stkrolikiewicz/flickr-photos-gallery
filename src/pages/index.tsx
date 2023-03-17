@@ -22,8 +22,8 @@ const Home: NextPage = () => {
     pages.push(<PhotosList index={i + 1} key={i + 1} next={i + 1 < cnt ? true : false} />)
   }
 
+  const isMobile = useMediaQuery({ query: 'screen and (max-width: 768px)' })
 
-  const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
   return (
     <>
       <Head>
