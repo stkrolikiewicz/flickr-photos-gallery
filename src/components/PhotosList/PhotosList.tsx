@@ -1,14 +1,12 @@
 import { useState } from "react"
 import usePhotos from "~/hooks/usePhotos"
 import Loader from "../Loader/Loader"
-import PhotosRow from "../PhotosRow/PhotosRow"
 import { useMediaQuery } from "react-responsive"
-import PhotosColumn from "../PhotosColumn/PhotosColumn"
-import { motion } from "framer-motion"
 import { Direction } from "~/types"
 import { usePagesCountState } from "~/hooks/usePagesCountContext"
-import { ArrowDownIcon, ArrowUpIcon } from "@heroicons/react/24/solid"
 import styles from "./PhotosList.module.css"
+import { MotionWrapper, NextButton, PreviousButton } from "~/components"
+import { Mobile, Desktop } from "~/views"
 
 interface Props {
   index: number,
@@ -39,69 +37,41 @@ const PhotosList = ({ index, next }: Props) => {
 
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
 
-  const h = 40
-  const pagesLimit = 600
-
-  const variants = {
-    "next": {
-      y: h,
-      opacity: 0
-    },
-    "previous": {
-      y: -h,
-      opacity: 0
-    },
-    "nextExit": {
-      y: -h,
-      opacity: 0
-    },
-    "previousExit": {
-      y: h,
-      opacity: 0
-    },
-  }
-
   return (
-    <>
-      {
-        !isMobile
-        && !loading && <motion.button
-          initial={{ opacity: cnt == 1 ? 0 : 1, height: h }}
-          animate={{ opacity: cnt == 1 ? 0 : 1, height: cnt == 1 ? 0 : h }}
-          transition={{ delay: 0.5 }}
-          className={`${styles.button} ${styles.previous}`} onClick={loadPrevious}>
-          <ArrowUpIcon className='h-6' />
-        </motion.button>
-      }
-      <motion.div
-        initial={direction}
-        animate={{ y: 0, opacity: 1 }}
-        exit={`${direction}Exit`}
-        transition={{ stiffness: 200 }}
-        variants={variants}
-        className={styles.container}
-      >
+    isMobile ?
+      <>
+        <MotionWrapper direction={direction}>
+          {
+            loading ? <Loader />
+              : photos &&
+              <Mobile photos={photos} />
+          }
+          {error && <h2>Error: {error.message}</h2>}
+        </MotionWrapper>
         {
-          loading ? <Loader />
-            : isMobile ? photos && <PhotosColumn photos={photos} />
-              : oddRow && evenRow &&
-              <>
-                <PhotosRow photos={oddRow} odd />
-                <PhotosRow photos={evenRow} />
-              </>
+          !loading && !clicked && <NextButton cnt={cnt} onClick={loadNext} />
         }
-        {error && <h2>Error: {error.message}</h2>}
-      </motion.div>
-      {
-        ((!isMobile && !loading && cnt < pagesLimit) || (isMobile && !loading && cnt < pagesLimit && !clicked)) && <motion.button
-          initial={{ opacity: cnt == pagesLimit ? 0 : 1, height: h }}
-          animate={{ opacity: cnt == pagesLimit ? 0 : 1, height: cnt == pagesLimit ? 0 : h }}
-          className={`${styles.button} ${styles.next}`}
-          onClick={loadNext}>
-          <ArrowDownIcon className='h-6' />
-        </motion.button>
-      }
-    </>
+      </>
+
+      : // !isMobile - Desktop
+
+      <>
+        {
+          !loading && <PreviousButton cnt={cnt} onClick={loadPrevious} />
+        }
+        <MotionWrapper direction={direction}>
+          {
+            loading ? <Loader />
+              : oddRow && evenRow &&
+              <Desktop oddRow={oddRow} evenRow={evenRow} />
+          }
+          {error && <h2>Error: {error.message}</h2>}
+        </MotionWrapper>
+        {
+          !loading &&
+          <NextButton cnt={cnt} onClick={loadNext} />
+        }
+      </>
   )
 }
 
