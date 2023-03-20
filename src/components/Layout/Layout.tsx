@@ -8,10 +8,11 @@ import { ArrowLeftIcon } from "@heroicons/react/24/solid"
 interface Props {
   children: React.ReactNode,
   home?: boolean,
-  photoCard?: boolean
+  photoCard?: boolean,
+  favourite?: boolean
 }
 
-const Layout = ({ children, home, photoCard }: Props) => {
+const Layout = ({ children, home, photoCard, favourite }: Props) => {
   const router = useRouter()
   const pid = router.query.id
   return (
@@ -19,7 +20,7 @@ const Layout = ({ children, home, photoCard }: Props) => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
-      {home ? <Header home /> : <Header />}
+      {home ? <Header home /> : favourite ? <Header favourite /> : <Header />}
       <main className={styles.main}>
         <div className={styles.children}>
           {children}

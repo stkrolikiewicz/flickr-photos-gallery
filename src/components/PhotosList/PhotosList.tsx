@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import usePhotos from "~/hooks/usePhotos"
 import Loader from "../Loader/Loader"
 import { useMediaQuery } from "react-responsive"

@@ -5,7 +5,6 @@ export const SetPagesCountContext = createContext<React.Dispatch<React.SetStateA
 
 export const PagesCountProvider = (props: PropsWithChildren) => {
   const [cnt, setCnt] = useState(1)
-
   return (
     <PagesCountContext.Provider value={cnt}>
       <SetPagesCountContext.Provider value={setCnt}>

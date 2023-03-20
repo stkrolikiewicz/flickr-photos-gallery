@@ -10,6 +10,11 @@ export interface Photo {
   isfamily: boolean
 }
 
+export interface PhotoInfo extends Photo {
+  date: string,
+  description?: string
+}
+
 export interface Response {
   photos?: Photos
   stat: string
@@ -23,16 +28,6 @@ export interface Photos {
   perpage: number
   photo: Photo[]
   total: number
-}
-
-export interface PhotoInfo {
-  id: string,
-  server: string,
-  secret: string,
-  owner: string,
-  date: string,
-  title: string,
-  description?: string
 }
 
 export type Direction = "next" | "previous" | ""

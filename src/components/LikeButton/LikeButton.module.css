@@ -1,0 +1,11 @@
+.heartDefault {
+  @apply absolute bottom-2 left-0 h-7 w-full bg-gray bg-opacity-50 backdrop-blur-sm hover:z-50 hover:cursor-pointer;
+}
+
+.heartFav {
+  @apply z-50 fill-light active:fill-transparent;
+}
+
+.heartNotFav {
+  @apply z-30 active:fill-light;
+}
