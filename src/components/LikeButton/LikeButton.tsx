@@ -8,9 +8,10 @@ import styles from "./LikeButton.module.css"
 
 interface Props {
   photo: Photo
+  photosRow?: boolean
 }
 
-const LikeButton = ({ photo }: Props) => {
+const LikeButton = ({ photo, photosRow }: Props) => {
   const favourites = useContext(FavouritesPhotosContext)
   const setFavourites = useContext(SetFavouritesContext)
 
@@ -24,7 +25,7 @@ const LikeButton = ({ photo }: Props) => {
 
   return (
     <div>
-      <HeartIcon role="button" onClick={() => manageFavourites(photo)} className={clsx(styles.heartDefault, favIds.includes(photo.id) ? styles.heartFav : styles.heartNotFav)} />
+      <HeartIcon role="button" onClick={() => manageFavourites(photo)} className={clsx(styles.heartDefault, photosRow && styles.photosRow, favIds.includes(photo.id) ? styles.heartFav : styles.heartNotFav)} />
     </div>
   )
 }

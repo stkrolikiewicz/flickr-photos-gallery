@@ -4,6 +4,7 @@ import Link from "next/link"
 import styles from "./PhotosColumn.module.css"
 import { blurDataURL } from "~/utils/blurDataURL"
 import { motion } from "framer-motion"
+import LikeButton from "../LikeButton/LikeButton"
 
 interface Props {
   photos: Photo[],
@@ -14,7 +15,8 @@ const PhotosColumn = ({ photos }: Props) => {
   return (
     <div className={styles.photosWrapper}>
       {photos?.map((photo: Photo) => (
-        <motion.div key={photo.id} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
+        <motion.div key={photo.id} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
+          className={styles.photoCard}>
           <Link className={styles.imageParent} href={`/photos/${photo.id}`} scroll={false}>
             <Image
               id={photo.id}
@@ -28,6 +30,7 @@ const PhotosColumn = ({ photos }: Props) => {
               onLoadingComplete={(e) => e.classList.remove('animate-pulse')}
             />
           </Link>
+          <LikeButton photo={photo} />
         </motion.div>
       ))
       }

@@ -65,7 +65,7 @@ const PhotosRow = ({ photos, odd }: Props) => {
         {photos?.map((photo: Photo) => (
           <>
             <div className={styles.imageParent}>
-              <LikeButton photo={photo} />
+              <LikeButton photo={photo} photosRow />
               <Link key={photo.id} href={`/photos/${photo.id}`} scroll={false}>
                 <Image
                   id={photo.id}
