@@ -1,18 +1,13 @@
 export interface Photo {
   id: string,
-  owner: string,
+  owner?: string,
   secret: string,
   server: string,
-  farm: number,
+  farm?: number,
   title: string,
-  ispublic: boolean,
-  isfriend: boolean,
-  isfamily: boolean
-}
-
-export interface PhotoInfo extends Photo {
-  date: string,
-  description?: string
+  ispublic?: boolean,
+  isfriend?: boolean,
+  isfamily?: boolean
 }
 
 export interface Response {
@@ -28,6 +23,16 @@ export interface Photos {
   perpage: number
   photo: Photo[]
   total: number
+}
+
+export interface PhotoInfo {
+  id: string,
+  server: string,
+  secret: string,
+  owner: string,
+  date: string,
+  title: string,
+  description?: string
 }
 
 export type Direction = "next" | "previous" | ""

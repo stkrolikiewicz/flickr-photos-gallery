@@ -14,14 +14,17 @@ const LikeButton = ({ photo }: Props) => {
   const favourites = useContext(FavouritesPhotosContext)
   const setFavourites = useContext(SetFavouritesContext)
 
+  const favIds: string[] = favourites.map(el => el.id)
+
   const manageFavourites = (photo: Photo) => {
-    const arr = favourites.includes(photo) ? arrayRemove(favourites, photo) : favourites.concat(photo)
+    favIds.includes(photo.id) && console.log(favIds.indexOf(photo.id))
+    const arr = favIds.includes(photo.id) ? arrayRemove(favourites, favourites[favIds.indexOf(photo.id)]) : favourites.concat(photo)
     setFavourites(arr)
   }
 
   return (
     <div>
-      <HeartIcon role="button" onClick={() => manageFavourites(photo)} className={clsx(styles.heartDefault, favourites.includes(photo) ? styles.heartFav : styles.heartNotFav)} />
+      <HeartIcon role="button" onClick={() => manageFavourites(photo)} className={clsx(styles.heartDefault, favIds.includes(photo.id) ? styles.heartFav : styles.heartNotFav)} />
     </div>
   )
 }
