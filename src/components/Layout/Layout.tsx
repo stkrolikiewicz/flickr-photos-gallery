@@ -4,6 +4,7 @@ import Header from "../Header/Header"
 import { useRouter } from "next/router"
 import { motion } from "framer-motion"
 import { ArrowLeftIcon } from "@heroicons/react/24/solid"
+import Footer from "../Footer/Footer"
 
 interface Props {
   children: React.ReactNode,
@@ -31,6 +32,7 @@ const Layout = ({ children, home, photoCard, favourite }: Props) => {
           </>
         )}
       </main>
+      <Footer />
     </motion.div>
   )
 }
