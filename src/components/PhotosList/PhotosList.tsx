@@ -7,6 +7,7 @@ import { usePagesCountState } from "~/hooks/usePagesCountContext"
 // import styles from "./PhotosList.module.css"
 import { MotionWrapper, NextButton, PreviousButton } from "~/components"
 import { Mobile, Desktop } from "~/views"
+import { InView } from 'react-intersection-observer'
 
 interface Props {
   index: number,
@@ -49,7 +50,11 @@ const PhotosList = ({ index, next }: Props) => {
           {error && <h2>Error: {error.message}</h2>}
         </MotionWrapper>
         {
-          !loading && !clicked && <NextButton cnt={cnt} onClick={loadNext} />
+          !loading && !clicked && <InView
+            as="div"
+            onChange={(inView) => inView && loadNext()}
+            triggerOnce={true}
+          ><NextButton cnt={cnt} onClick={loadNext} /></InView>
         }
       </>
 

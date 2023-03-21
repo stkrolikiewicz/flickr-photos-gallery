@@ -18,7 +18,6 @@ const LikeButton = ({ photo, photosRow }: Props) => {
   const favIds: string[] = favourites.map(el => el.id)
 
   const manageFavourites = (photo: Photo) => {
-    favIds.includes(photo.id) && console.log(favIds.indexOf(photo.id))
     const arr = favIds.includes(photo.id) ? arrayRemove(favourites, favourites[favIds.indexOf(photo.id)]) : favourites.concat(photo)
     setFavourites(arr)
   }
