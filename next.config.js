@@ -15,6 +15,7 @@ const nextConfig = {
   env: {
     API_KEY: '06fe421ea76dcc08939e8e4202b4d933',
   },
+  "presets": ["next/babel"]
 };
 
 module.exports = nextConfig;

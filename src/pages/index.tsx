@@ -7,6 +7,8 @@ import { useMediaQuery } from 'react-responsive'
 import { Layout, PhotosList } from '~/components'
 import { usePagesCountState } from '~/hooks/usePagesCountContext'
 
+jest.mock('next/router', () => require('next-router-mock'));
+
 const Home: NextPage = () => {
   const router = useRouter()
   const pid = router.asPath.split('/#')[1]
