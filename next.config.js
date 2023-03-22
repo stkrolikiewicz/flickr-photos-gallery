@@ -1,9 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  images.unoptimized = true,
   images: {
-    formats: ["image/avif", "image/webp"],
+    // formats: ["image/avif", "image/webp"],
     remotePatterns: [
       {
         protocol: "https",
@@ -11,6 +10,7 @@ const nextConfig = {
         port: "",
         pathname: "/**/**",
       },
+      unoptimized: "true",
     ],
   },
   env: {
