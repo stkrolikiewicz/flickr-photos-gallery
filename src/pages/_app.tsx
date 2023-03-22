@@ -6,6 +6,7 @@ import Router from "next/router"
 import { useEffect, useState } from 'react'
 import PageLoader from '~/components/PageLoader/PageLoader'
 import { FirstLoadProvider } from '~/contexts/firstLoad'
+import { FavouritesPhotosProvider } from '~/contexts/favourites'
 
 export default function App({ Component, pageProps, router }: AppProps) {
   const [loading, setLoading] = useState(false)
@@ -28,12 +29,14 @@ export default function App({ Component, pageProps, router }: AppProps) {
   }, [])
 
   return (
-    <FirstLoadProvider>
-      <PagesCountProvider>
-        <AnimatePresence mode='wait' initial={false}>
-          {loading ? <PageLoader /> : <Component {...pageProps} key={router.asPath} />}
-        </AnimatePresence>
-      </PagesCountProvider>
-    </FirstLoadProvider>
+    <FavouritesPhotosProvider>
+      <FirstLoadProvider>
+        <PagesCountProvider>
+          <AnimatePresence mode='wait' initial={false}>
+            {loading ? <PageLoader /> : <Component {...pageProps} key={router.asPath} />}
+          </AnimatePresence>
+        </PagesCountProvider>
+      </FirstLoadProvider>
+    </FavouritesPhotosProvider>
   )
 }

@@ -7,7 +7,9 @@ import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/solid"
 import { blurDataURL } from "~/utils/blurDataURL"
 import { motion } from "framer-motion"
 import { useFirstLoad } from "~/hooks/useFirstLoad"
-
+import { clsx } from "clsx"
+import { scrollLeft, scrollRight } from "~/utils/rowScroll"
+import LikeButton from "../LikeButton/LikeButton"
 
 interface Props {
   photos: Photo[],
@@ -16,13 +18,12 @@ interface Props {
 
 const PhotosRow = ({ photos, odd }: Props) => {
   const [firstTime, setFirstTime] = useFirstLoad()
-  const [scrollLeft, setScrollLeft] = useState<number>(0)
+  const [scrollLeftPosition, setScrollLeftPosition] = useState<number>(0)
   const [maxLeft, setMaxLeft] = useState<number>(10588)
   const rowRef = useRef<HTMLDivElement>(null)
   const imageWidth = 180
   const rowGap = 16
   const scrollOffset = 25 * (imageWidth + rowGap)
-
   useEffect(() => {
     const handleResize = () => {
       rowRef.current && setMaxLeft(rowRef.current.scrollWidth - rowRef.current.clientWidth)
@@ -33,53 +34,55 @@ const PhotosRow = ({ photos, odd }: Props) => {
     }) : rowRef.current?.scrollTo({
       left: scrollOffset,
     })
-  }, [odd, scrollOffset])
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
 
   const slideLeft = () => {
-    rowRef.current?.scrollTo({
-      left: Math.max(rowRef.current?.scrollLeft - rowRef.current?.clientWidth, 0),
-      behavior: 'smooth'
-    })
+    scrollLeft(rowRef)
     setFirstTime(false)
   }
+
   const slideRight = () => {
-    rowRef.current?.scrollTo({
-      left: Math.min(rowRef.current?.scrollLeft + rowRef.current?.clientWidth, rowRef.current?.scrollWidth),
-      behavior: 'smooth'
-    })
+    scrollRight(rowRef)
     setFirstTime(false)
   }
 
   const handleScroll = (event: UIEvent) => {
-    setScrollLeft(event.currentTarget.scrollLeft)
+    setScrollLeftPosition(event.currentTarget.scrollLeft)
     setMaxLeft(event.currentTarget.scrollWidth - event.currentTarget.clientWidth)
   }
-
   return (
-    <motion.div className={styles.photosWrapper} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} onAnimationComplete={firstTime ? (odd ? slideLeft : slideRight) : () => { 0 }}>
-      {scrollLeft < maxLeft && <button className={`${styles.slideButton} ${styles.slideRight}`} onClick={slideRight}>
+    <motion.div className={styles.photosWrapper} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} onAnimationComplete={firstTime ? odd ? slideLeft : slideRight : () => { 0 }}>
+      {scrollLeftPosition < maxLeft && <button className={`${styles.slideButton} ${styles.slideRight}`} onClick={slideRight}>
         <ArrowRightIcon className="h-[20px]" />
       </button>}
-      {scrollLeft > 0 && <button className={`${styles.slideButton} ${styles.slideLeft}`} onClick={slideLeft}>
+      {scrollLeftPosition > 0 && <button className={clsx(styles.slideButton, styles.slideLeft)} onClick={slideLeft}>
         <ArrowLeftIcon className="h-[20px]" />
       </button>}
       <div ref={rowRef} className={styles.row} onScroll={handleScroll}>
         {photos?.map((photo: Photo) => (
-          <Link className={styles.imageParent} key={photo.id} href={`/photos/${photo.id}`}>
-            <Image
-              id={photo.id}
-              placeholder='blur'
-              blurDataURL={blurDataURL}
-              className={`${styles.image} animate-pulse`}
-              src={`https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`}
-              fill
-              alt={photo.title}
-              onLoadingComplete={(e) => console.log(e.classList.remove('animate-pulse'))}
-            />
-          </Link>
+          <>
+            <div className={styles.imageParent}>
+              <LikeButton photo={photo} photosRow />
+              <Link key={photo.id} href={`/photos/${photo.id}`} scroll={false}>
+                <Image
+                  id={photo.id}
+                  placeholder='blur'
+                  blurDataURL={blurDataURL}
+                  className={`${styles.image} animate-pulse`}
+                  src={`https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`}
+                  fill
+                  alt={photo.title}
+                  onLoadingComplete={(e) => e.classList.remove('animate-pulse')}
+                />
+              </Link>
+            </div>
+          </>
         ))}
       </div>
-    </motion.div>
+    </motion.div >
   )
 }
 

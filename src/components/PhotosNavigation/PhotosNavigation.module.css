@@ -1,7 +1,6 @@
 .button {
   @apply flex flex-col items-center justify-center border border-transparent px-3 text-light transition;
 }
-
 .next {
   @apply hover:border-b-gray;
 }

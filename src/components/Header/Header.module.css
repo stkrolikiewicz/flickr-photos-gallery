@@ -1,5 +1,5 @@
 .header {
-  @apply sticky top-0 z-40 flex h-[var(--header-h)]  items-center border-b border-gray bg-transparent px-3;
+  @apply sticky top-0 z-40 flex h-[var(--header-h)]  items-center justify-between border-b border-gray bg-transparent px-3;
 }
 .vanishBar {
   @apply fixed top-0 left-0 z-30 h-[var(--header-h)] w-screen bg-stone bg-opacity-90 shadow-xl shadow-stone backdrop-blur-lg;

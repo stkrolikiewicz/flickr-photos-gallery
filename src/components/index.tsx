@@ -1,2 +1,7 @@
 export { default as Layout } from "./Layout/Layout"
 export { default as PhotosList } from "./PhotosList/PhotosList"
+export { default as PhotosColumn } from "./PhotosColumn/PhotosColumn"
+export { default as PhotosRow } from "./PhotosRow/PhotosRow"
+export { NextButton as NextButton } from "./PhotosNavigation/PhotosNavigation"
+export { PreviousButton as PreviousButton } from "./PhotosNavigation/PhotosNavigation"
+export { MotionWrapper as MotionWrapper } from "./PhotosNavigation/PhotosNavigation"

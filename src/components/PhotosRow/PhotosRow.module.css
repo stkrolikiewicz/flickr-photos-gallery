@@ -7,24 +7,36 @@
 }
 
 .imageParent {
-  @apply relative min-h-[180px] min-w-[180px] flex-grow;
+  @apply relative max-h-[180px] min-h-[180px] min-w-[180px] max-w-[180px] flex-grow;
 }
 
 .image {
-  @apply rounded-md object-cover shadow-sm shadow-black transition hover:opacity-70;
+  @apply z-40 rounded-md object-cover shadow-sm shadow-black transition hover:z-20 hover:opacity-70;
 }
 
 .loading {
   @apply animate-pulse;
 }
 .slideButton {
-  @apply absolute z-10 flex h-[180px] w-[90px] items-center justify-center p-2 text-transparent transition hover:bg-stone hover:bg-opacity-20 hover:text-black hover:backdrop-blur-md;
+  @apply absolute z-50 flex h-[180px] w-[90px] items-center justify-center p-2 text-transparent transition hover:bg-light hover:bg-opacity-20 hover:text-black hover:backdrop-blur-md;
 }
 
 .slideLeft {
-  @apply left-0 hover:shadow-left;
+  @apply left-0 border-r border-r-transparent hover:border-r-gray hover:shadow-left;
 }
 
 .slideRight {
-  @apply right-0 left-auto hover:shadow-right;
+  @apply right-0 left-auto border-l border-l-transparent hover:border-l-gray hover:shadow-right;
+}
+
+.heartDefault {
+  @apply absolute bottom-2 left-0 h-7 w-full bg-gray bg-opacity-50 backdrop-blur-sm hover:z-50 hover:cursor-pointer;
+}
+
+.heartFav {
+  @apply z-50 fill-light active:fill-transparent;
+}
+
+.heartNotFav {
+  @apply z-30 active:fill-light;
 }

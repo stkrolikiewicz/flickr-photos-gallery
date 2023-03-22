@@ -1,13 +1,13 @@
 export interface Photo {
   id: string,
-  owner: string,
+  owner?: string,
   secret: string,
   server: string,
-  farm: number,
+  farm?: number,
   title: string,
-  ispublic: boolean,
-  isfriend: boolean,
-  isfamily: boolean
+  ispublic?: boolean,
+  isfriend?: boolean,
+  isfamily?: boolean
 }
 
 export interface Response {

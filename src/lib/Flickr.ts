@@ -11,7 +11,7 @@ export const getDogsPhotos = async () => {
     return a.id.localeCompare(b.id);
   });
 
-  return res;
+  return res
 }
 
 export const getPhotoInfoById = async (id: string): Promise<PhotoInfo> => {
