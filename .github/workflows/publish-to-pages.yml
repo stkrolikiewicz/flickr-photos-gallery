@@ -44,7 +44,7 @@ jobs:
         with:
           node-version: '16.10.0'
           cache: ${{ steps.detect-package-manager.outputs.manager }}
-          cache-dependency-path: package.json
+          cache-dependency-path: package-lock.json
 
       - name: Setup Pages 🔧
         id: pages
