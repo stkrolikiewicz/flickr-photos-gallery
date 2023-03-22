@@ -42,8 +42,9 @@ jobs:
       - name: Setup Node 🍉
         uses: actions/setup-node@v3
         with:
-          cache: ${{ steps.detect-package-manager.outputs.manager }}
           node-version: '16.10.0'
+          cache: npm
+          cache-dependency-path: ../../package-lock.json
 
       - name: Setup Pages 🔧
         id: pages
